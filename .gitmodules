@@ -1,0 +1,3 @@
+[submodule "xeps"]
+	path = xeps
+	url = https://github.com/xsf/xeps.git
