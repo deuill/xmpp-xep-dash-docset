@@ -42,7 +42,7 @@ $(CONTENTDIR)Resources/docSet.dsidx: template/docSet.dsidx
 
 $(CONTENTDIR)Resources/Documents/xep-%.html: $(XEPDIR)xep-%.xml | $(CONTENTDIR)Resources/docSet.dsidx
 	$Q mkdir -p $(@D)
-	$Q $(SQLITE) $(CONTENTDIR)Resources/docSet.dsidx "INSERT OR IGNORE INTO searchIndex(name, type, path) VALUES ('$(subst ','',$(call extract-title,$<))', 'Guide', 'xep-$*.html');"
+	$Q $(SQLITE) $(CONTENTDIR)Resources/docSet.dsidx "REPLACE INTO searchIndex(name, type, path) VALUES ('$(subst ','',$(call extract-title,$<))', 'Guide', 'xep-$*.html');"
 	$Q $(MAKE) -C $(XEPDIR) xep-$*.html OUTDIR=$(@D)
 
 $(BUILDDIR)$(NAME).tgz: $(XEPS) $(CONTENTDIR)Info.plist
