@@ -9,7 +9,7 @@ The source XEPs to be included in the resulting docset are pulled automatically 
 able to build a useful doc-set, and you can do this like so:
 
 ```sh
-git submodule --remote --recursive
+git submodule update --remote --recursive
 ```
 
 Building the docset might fail if the above was not done and this repository wasn't cloned via `git

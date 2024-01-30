@@ -10,6 +10,7 @@ REMOTE_URL  := https://xmpp.org/extensions
 ENVSUBST = $(call find-cmd,envsubst)
 SQLITE   = $(call find-cmd,sqlite3)
 TAR      = $(call find-cmd,tar)
+GIT      = $(call find-cmd,git)
 
 # Directory aliases.
 ROOTDIR    := $(dir $(realpath $(firstword $(MAKEFILE_LIST))))
@@ -23,6 +24,10 @@ VERBOSE :=
 
 ## Build and archive docset.
 build: $(BUILDDIR)$(NAME).tgz
+
+## Update XEPs in submodule.
+update:
+	$Q $(GIT) submodule update --remote --recursive
 
 ## Remove all temporary build files.
 clean:
@@ -48,7 +53,7 @@ $(CONTENTDIR)Resources/Documents/xep-%.html: $(XEPDIR)xep-%.xml | $(CONTENTDIR)R
 $(BUILDDIR)$(NAME).tgz: $(XEPS) $(CONTENTDIR)Info.plist
 	$Q $(TAR) --create --gzip --file $(BUILDDIR)$(NAME).tgz -C $(BUILDDIR) $(NAME).docset
 
-.PHONY: build clean
+.PHONY: build update clean
 
 # Conditional command echo control.
 Q := $(if $(VERBOSE),,@)
