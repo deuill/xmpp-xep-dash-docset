@@ -26,6 +26,18 @@ Building a new Docset requires a single command and a few dependencies:
 
 With these dependencies in place, you can just run `make` in the root directory of the repository.
 
+## Install
+
+You can install the resulting docset by either using the `build/XEPs.tgz` package directly, or,
+alternatively, by using the feed hosted here, the URL for which is:
+
+```
+https://raw.githubusercontent.com/deuill/xmpp-xep-dash-docset/trunk/XEPs.xml
+```
+
+Copying this into your application of choice (Dash, Zeal, etc.) should automatically pull in any
+future updates to the docset.
+
 ## License
 
 All code in this repository is covered by the terms of the MIT License, the full text of which can
